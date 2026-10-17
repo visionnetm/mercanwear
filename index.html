@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalDrop China Store - Prémium Dropshipping Webshop</title>
+    <!-- Tailwind CSS CDN a modern dizájnért -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome ikonok -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- ========================================== -->
+    <!-- 1. FEJLÉC (HEADER) ÉS NAVIGÁCIÓ -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <!-- Felső sáv -->
+        <div class="bg-indigo-900 text-white text-xs py-2 px-4 text-center font-medium">
+            🚀 Ingyenes szállítás Kínából közvetlenül a raktárból minden 15.000 Ft feletti rendeléshez! | Támogatott fizetés: Stripe
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- LOGÓ -->
+            <a href="#" class="flex items-center space-x-2">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold text-xl tracking-wider">
+                    <i class="fa-solid fa-globe"></i> VC-DROP
+                </div>
+                <span class="text-xl font-extrabold text-gray-900 tracking-tight hidden sm:inline">China Store</span>
+            </a>
+
+            <!-- MENÜ - Kategóriák linkek (Ugrás a termékekhez) -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-gray-600">
+                <a href="#cipok" class="hover:text-indigo-600 transition">Cipők</a>
+                <a href="#kabatok" class="hover:text-indigo-600 transition">Kabátok</a>
+                <a href="#polok" class="hover:text-indigo-600 transition">Pólók</a>
+                <a href="#nadragok" class="hover:text-indigo-600 transition">Nadrágok</a>
+                <a href="#kiegeszitok" class="hover:text-indigo-600 transition">Kiegészítők</a>
+                <a href="#felsok" class="hover:text-indigo-600 transition">Felsők</a>
+            </nav>
+
+            <!-- JOBB OLDALI IKONOK (KEDVENCEK ÉS KOSÁR) -->
+            <div class="flex items-center space-x-4">
+                <!-- Kedvencek gomb -->
+                <button onclick="toggleWishlistModal()" class="relative p-2 text-gray-600 hover:text-indigo-600 transition">
+                    <i class="fa-solid fa-heart text-xl"></i>
+                    <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+                </button>
+                <!-- Kosár gomb -->
+                <button onclick="toggleCartModal()" class="relative p-2 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-full px-4 py-2 flex items-center space-x-2 transition font-medium">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count" class="bg-indigo-600 text-white text-xs px-2 py-0.5 rounded-full font-bold">0 db</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobil menü sáv -->
+        <div class="md:hidden bg-gray-100 py-2 px-4 flex overflow-x-auto space-x-4 text-xs font-semibold text-gray-700 whitespace-nowrap">
+            <a href="#cipok" class="hover:text-indigo-600">Cipők</a>
+            <a href="#kabatok" class="hover:text-indigo-600">Kabátok</a>
+            <a href="#polok" class="hover:text-indigo-600">Pólók</a>
+            <a href="#nadragok" class="hover:text-indigo-600">Nadrágok</a>
+            <a href="#kiegeszitok" class="hover:text-indigo-600">Kiegészítők</a>
+            <a href="#felsok" class="hover:text-indigo-600">Felsők</a>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 2. HEADER KÉP / HERO SZEKCIÓ -->
+    <!-- ========================================== -->
+    <section class="relative bg-gray-900 text-white py-24 px-4 overflow-hidden">
+        <!-- Itt cserélheted a hátteret egy másik kínai dropshipping banner képre -->
+        <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1600');"></div>
+        <div class="relative max-w-7xl mx-auto text-center space-y-6">
+            <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest">Közvetlen gyári import</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Prémium Kínai Divat & Trendek</h1>
+            <p class="max-w-2xl mx-auto text-lg text-gray-300">Válogass a legújabb divatcikkek között egyedi azonosítókkal (vc1 - vc18). Minden termék minőségellenőrzött!</p>
+            <div class="flex justify-center gap-4">
+                <a href="#cipok" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition">Vásárlás Indítása</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. TERMÉKEK FŐ TARTALMA (KATEGÓRIÁNKÉNT) -->
+    <!-- ========================================== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+        <!-- KATEGÓRIA 1: CIPŐK (vc1 - vc3) -->
+        <section id="cipok" class="space-y-8">
+            <div class="border-b pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-indigo-600 font-bold text-sm tracking-wider uppercase">Lábbeli</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Cipők</h2>
+                </div>
+                <span class="text-xs text-gray-500 font-medium">Azonosítók: vc1 - vc3</span>
+            </div>
+            <div id="grid-cipok" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript tölti fel dinamikusan a termékeket -->
+            </div>
+        </section>
+
+        <!-- KATEGÓRIA 2: KABÁTOK (vc4 - vc6) -->
+        <section id="kabatok" class="space-y-8">
+            <div class="border-b pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-indigo-600 font-bold text-sm tracking-wider uppercase">Felsőruházat</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Kabátok</h2>
+                </div>
+                <span class="text-xs text-gray-500 font-medium">Azonosítók: vc4 - vc6</span>
+            </div>
+            <div id="grid-kabatok" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- KATEGÓRIA 3: PÓLÓK (vc7 - vc9) -->
+        <section id="polok" class="space-y-8">
+            <div class="border-b pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-indigo-600 font-bold text-sm tracking-wider uppercase">Alapdarabok</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Pólók</h2>
+                </div>
+                <span class="text-xs text-gray-500 font-medium">Azonosítók: vc7 - vc9</span>
+            </div>
+            <div id="grid-polok" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- KATEGÓRIA 4: NADRÁGOK (vc10 - vc12) -->
+        <section id="nadragok" class="space-y-8">
+            <div class="border-b pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-indigo-600 font-bold text-sm tracking-wider uppercase">Alsóruházat</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Nadrágok</h2>
+                </div>
+                <span class="text-xs text-gray-500 font-medium">Azonosítók: vc10 - vc12</span>
+            </div>
+            <div id="grid-nadragok" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- KATEGÓRIA 5: KIEGÉSZÍTŐK (vc13 - vc15) -->
+        <section id="kiegeszitok" class="space-y-8">
+            <div class="border-b pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-indigo-600 font-bold text-sm tracking-wider uppercase">Kiegészítők</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Kiegészítők</h2>
+                </div>
+                <span class="text-xs text-gray-500 font-medium">Azonosítók: vc13 - vc15</span>
+            </div>
+            <div id="grid-kiegeszitok" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- KATEGÓRIA 6: FELSŐK (vc16 - vc18) -->
+        <section id="felsok" class="space-y-8">
+            <div class="border-b pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-indigo-600 font-bold text-sm tracking-wider uppercase">Divat</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">Felsők</h2>
+                </div>
+                <span class="text-xs text-gray-500 font-medium">Azonosítók: vc16 - vc18</span>
+            </div>
+            <div id="grid-felsok" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- 4. KOSÁR MODAL / CSÚSZÓ ABLAK -->
+    <!-- ========================================== -->
+    <div id="cart-modal" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity" onclick="toggleCartModal()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-xl flex flex-col">
+                <div class="p-6 bg-indigo-900 text-white flex items-center justify-between">
+                    <h3 class="text-lg font-bold">Bevásárlókosár</h3>
+                    <button onclick="toggleCartModal()" class="text-white hover:text-gray-200 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Kosár elemek ide generálódnak -->
+                </div>
+                <div class="p-6 border-t bg-gray-50 space-y-4">
+                    <div class="flex justify-between text-base font-bold text-gray-900">
+                        <span>Összesen:</span>
+                        <span id="cart-total">0 Ft</span>
+                    </div>
+                    <button onclick="openCheckout()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow transition text-center block">
+                        Tovább a Pénztárhoz (Checkout)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 5. KEDVENCEK (WISHLIST) MODAL -->
+    <!-- ========================================== -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity" onclick="toggleWishlistModal()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-xl flex flex-col">
+                <div class="p-6 bg-rose-600 text-white flex items-center justify-between">
+                    <h3 class="text-lg font-bold">Kedvenc Termékek (Beszívezve)</h3>
+                    <button onclick="toggleWishlistModal()" class="text-white hover:text-gray-200 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="wishlist-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Kedvencek ide generálódnak -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 6. PÉNZTÁR (CHECKOUT) MODAL (STRIPE + EMAILJS) -->
+    <!-- ========================================== -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity bg-black bg-opacity-60" onclick="closeCheckout()"></div>
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
+                <div class="bg-indigo-900 text-white px-6 py-4 flex justify-between items-center">
+                    <h3 class="text-lg font-bold">Biztonságos Pénztár (Stripe Fizetés)</h3>
+                    <button onclick="closeCheckout()" class="text-white hover:text-gray-200"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+                <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-6 space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Vezetéknév és Keresztnév</label>
+                            <input type="text" id="c-name" required class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-600 outline-none" placeholder="Kovács János">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Cím (hová küldjük az értesítőt)</label>
+                            <input type="email" id="c-email" required class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-600 outline-none" placeholder="pelda@email.hu">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Szállítási Cím</label>
+                        <input type="text" id="c-address" required class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-600 outline-none" placeholder="Fő utca 12., 3. em. 2.">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Város</label>
+                            <input type="text" id="c-city" required class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-600 outline-none" placeholder="Budapest">
+                        </div>
+                        <div>Irnyítószám</div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Irányítószám</label>
+                            <input type="text" id="c-zip" required class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-600 outline-none" placeholder="1051">
+                        </div>
+                    </div>
+
+                    <!-- Stripe kártyás fizetés szimulációs mező (Valós Stripe Elements integrációhoz ide jön a kártya input) -->
+                    <div class="bg-gray-50 p-4 rounded-xl border space-y-3">
+                        <div class="flex justify-between items-center text-sm font-bold text-gray-700">
+                            <span>Bankkártya adatok (Stripe Secure)</span>
+                            <i class="fa-brands fa-stripe text-3xl text-indigo-600"></i>
+                        </div>
+                        <input type="text" placeholder="4242 •••• •••• 4242" required class="w-full border bg-white rounded-lg px-3 py-2 text-sm font-mono" maxlength="19">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" placeholder="MM / ÉÉ" required class="border bg-white rounded-lg px-3 py-2 text-sm font-mono">
+                            <input type="text" placeholder="CVC" required class="border bg-white rounded-lg px-3 py-2 text-sm font-mono" maxlength="4">
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <span id="checkout-btn-text">Fizetés és Rendelés Elküldése (Stripe + EmailJS)</span>
+                        </button>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2">A fizetés sikeres jóváhagyása (Stripe) után az EmailJS automatikusan elküldi a rendelést!</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 7. LÁBLÉC (FOOTER) -->
+    <!-- ========================================== -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <p class="text-sm">© 2026 GlobalDrop China Store. Minden jog fenntartva. Dropshipping partner: Alibaba / AliExpress Direct.</p>
+            <p class="text-xs text-gray-500">Termékazonosítók: vc1 - vc18. Könnyen testreszabható HTML/JS template.</p>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- 8. JAVASCRIPT LOGIKA ÉS TERMÉK ADATBÁZIS -->
+    <!-- ========================================== -->
+    <!-- EmailJS SDK betöltése az email küldéshez -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // EmailJS inicializálás (Itt cserélheted ki a public key-det)
+        (function() {
+            emailjs.init("VAGY_ITT_ADD_MEG_AZ_EMAILJS_PUBLIC_KEY_T");
+        })();
+
+        // TERMÉK ADATBÁZIS (Minden terméknek egyedi ID-ja van vc1-től vc18-ig, és mindegyikhez 3 kép tartozik!)
+        const products = [
+            // CIPŐK (vc1 - vc3)
+            {
+                id: "vc1",
+                category: "cipok",
+                name: "Kínai Prémium Streetwear Futócipő",
+                price: 18990,
+                rating: 4.8,
+                sizes: ["39", "40", "41", "42", "43", "44"],
+                colors: ["Fekete/Piros", "Fehér/Kék", "Teljes Fekete"],
+                images: [
+                    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc2",
+                category: "cipok",
+                name: "Cyberpunk Designer Magas szárú Cipő",
+                price: 24500,
+                rating: 4.9,
+                sizes: ["40", "41", "42", "43", "45"],
+                colors: ["Sötétszürke", "Neon zöld", "Fehér"],
+                images: [
+                    "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc3",
+                category: "cipok",
+                name: "Ultra Light Légáteresztő Sportcipő",
+                price: 14900,
+                rating: 4.7,
+                sizes: ["38", "39", "40", "41", "42", "43", "44"],
+                colors: ["Kék", "Szürke", "Fekete"],
+                images: [
+                    "https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+
+            // KABÁTOK (vc4 - vc6)
+            {
+                id: "vc4",
+                category: "kabatok",
+                name: "Techwear Vízálló Téli Kabát Kapucnival",
+                price: 34990,
+                rating: 4.9,
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                colors: ["Fekete", "Olajzöld", "Sötétkék"],
+                images: [
+                    "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc5",
+                category: "kabatok",
+                name: "Oversized Stílusú Plüss Dzseki",
+                price: 27900,
+                rating: 4.6,
+                sizes: ["S", "M", "L", "XL"],
+                    colors: ["Bézs", "Barna", "Fekete"],
+                images: [
+                    "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc6",
+                category: "kabatok",
+                name: "Minimalista Design Széldzseki",
+                price: 19990,
+                rating: 4.8,
+                sizes: ["M", "L", "XL"],
+                colors: ["Fekete", "Fehér"],
+                images: [
+                    "https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+
+            // PÓLÓK (vc7 - vc9)
+            {
+                id: "vc7",
+                category: "polok",
+                name: "Grafikus Printelt Oversized Póló",
+                price: 7990,
+                rating: 4.7,
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Fekete", "Fehér", "Mosott szürke"],
+                images: [
+                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc8",
+                category: "polok",
+                name: "Prémium Nehéz Pamut Alappóló",
+                price: 5990,
+                rating: 4.9,
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                colors: ["Fehér", "Fekete", "Bézs", "Navy"],
+                images: [
+                    "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc9",
+                category: "polok",
+                name: "Y2K Esztétikai Kínai Streetwear Póló",
+                price: 8500,
+                rating: 4.5,
+                sizes: ["S", "M", "L"],
+                colors: ["Fekete", "Rózsaszín"],
+                images: [
+                    "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+
+            // NADRÁGOK (vc10 - vc12)
+            {
+                id: "vc10",
+                category: "nadragok",
+                name: "Többfunkciós Cargo Nadrág Zsebekkel",
+                price: 15990,
+                rating: 4.8,
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Fekete", "Khaki", "Szürke"],
+                images: [
+                    "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc11",
+                category: "nadragok",
+                name: "Széles szárú Oversized Farmer",
+                price: 17500,
+                rating: 4.7,
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Világoskék", "Sötétkék", "Fekete"],
+                images: [
+                    "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1565084888279-aca607ecce0c?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1542272604-787c96355d54?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc12",
+                category: "nadragok",
+                name: "Kényelmes Streetwear Melegítőnadrág",
+                price: 11990,
+                rating: 4.9,
+                sizes: ["M", "L", "XL", "XXL"],
+                colors: ["Fekete", "Szürke melír"],
+                images: [
+                    "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+
+            // KIEGÉSZÍTŐK (vc13 - vc15)
+            {
+                id: "vc13",
+                category: "kiegeszitok",
+                name: "Vízálló Techwear Oldaltáska / Hátizsák",
+                price: 9990,
+                rating: 4.9,
+                sizes: ["Egyes méret"],
+                colors: ["Fekete", "Fekete/Szürke"],
+                images: [
+                    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc14",
+                category: "kiegeszitok",
+                name: "Minimalista Titánium Napszemüveg",
+                price: 6990,
+                rating: 4.6,
+                sizes: ["Egyes méret"],
+                colors: ["Fekete/Füst", "Arany/Barna"],
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc15",
+                category: "kiegeszitok",
+                name: "Streetwear Fém Láncos Öv & Kiegészítő",
+                price: 4990,
+                rating: 4.7,
+                sizes: ["Állítható"],
+                colors: ["Ezüst", "Fekete fém"],
+                images: [
+                    "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+
+            // FELSŐK (vc16 - vc18)
+            {
+                id: "vc16",
+                category: "felsok",
+                name: "Kapucnis Bolyhos Pulóver (Hoodie)",
+                price: 14990,
+                rating: 4.8,
+                sizes: ["S", "M", "L", "XL"],
+                colors: ["Fekete", "Szürke", "Krém"],
+                images: [
+                    "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc17",
+                category: "felsok",
+                name: "Zip-up Streetwear Pulóver",
+                price: 16500,
+                rating: 4.9,
+                sizes: ["M", "L", "XL"],
+                colors: ["Fekete", "Sötétkék"],
+                images: [
+                    "https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80&w=600"
+                ]
+            },
+            {
+                id: "vc18",
+                category: "felsok",
+                name: "Kötött Oversized Pulóver",
+                price: 13990,
+                rating: 4.7,
+                sizes: ["S", "M", "L"],
+                colors: ["Bézs", "Fekete", "Szürke"],
+                images: [
+                    "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&q=80&w=600",
+                    "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=600"
+                ]
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+
+        // Termékek renderelése a megfelelő kategória gridbe
+        function renderProducts() {
+            const categories = ['cipok', 'kabatok', 'polok', 'nadragok', 'kiegeszitok', 'felsok'];
+            
+            categories.forEach(cat => {
+                const container = document.getElementById(`grid-${cat}`);
+                if (!container) return;
+                
+                const catProducts = products.filter(p => p.category === cat);
+                container.innerHTML = catProducts.map(p => `
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden group">
+                        <!-- KÉP VÁLTÓ SZEKCIÓ (3 kép mindegyikhez) -->
+                        <div class="relative bg-gray-100 overflow-hidden h-72">
+                            <img id="img-${p.id}" src="${p.images[0]}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            
+                            <!-- ID Badge -->
+                            <span class="absolute top-3 left-3 bg-indigo-900 text-white text-xs font-bold px-2.5 py-1 rounded-md shadow">
+                                ID: ${p.id}
+                            </span>
+
+                            <!-- Szívecske gomb (Beszívezés) -->
+                            <button onclick="toggleWishlist('${p.id}')" class="absolute top-3 right-3 bg-white/90 hover:bg-white p-2 rounded-full shadow text-gray-600 hover:text-rose-500 transition">
+                                <i class="fa-solid fa-heart ${wishlist.includes(p.id) ? 'text-rose-500' : 'text-gray-400'}"></i>
+                            </button>
+
+                            <!-- 3 Miniatűr kép váltó gombok -->
+                            <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1.5 bg-black/30 p-1 rounded-lg backdrop-blur-sm">
+                                ${p.images.map((img, idx) => `
+                                    <button onclick="changeImage('${p.id}', '${img}')" class="w-8 h-8 rounded overflow-hidden border-2 border-white/70 hover:border-indigo-500 transition">
+                                        <img src="${img}" class="w-full h-full object-cover">
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- TERMÉK ADATAI -->
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Gyári import</span>
+                                    <span class="text-amber-500 text-xs font-bold"><i class="fa-solid fa-star"></i> ${p.rating}</span>
+                                </div>
+                                <h3 class="font-bold text-gray-900 text-base line-clamp-1">${p.name}</h3>
+                                <div class="text-indigo-600 font-extrabold text-xl mt-1">${p.price.toLocaleString()} Ft</div>
+                            </div>
+
+                            <!-- MÉRET ÉS SZÍN VÁLASZTÓ -->
+                            <div class="space-y-3 pt-2 border-t border-gray-100 text-xs">
+                                <div>
+                                    <label class="block font-bold text-gray-700 mb-1">Méret:</label>
+                                    <select id="size-${p.id}" class="w-full border rounded-lg p-2 bg-gray-50 focus:bg-white outline-none font-medium">
+                                        ${p.sizes.map(s => `<option value="${s}">${s}</option>`).join('')}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-gray-700 mb-1">Szín:</label>
+                                    <select id="color-${p.id}" class="w-full border rounded-lg p-2 bg-gray-50 focus:bg-white outline-none font-medium">
+                                        ${p.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- KOSÁRBA RAKÁS GOMB -->
+                            <button onclick="addToCart('${p.id}')" class="w-full bg-gray-900 hover:bg-indigo-600 text-white font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Kosárba rakom</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        // Kép váltása a miniatűrökre kattintva
+        function changeImage(productId, imageUrl) {
+            const imgElement = document.getElementById(`img-${productId}`);
+            if (imgElement) {
+                imgElement.src = imageUrl;
+            }
+        }
+
+        // Kedvencek (Wishlist) kezelése
+        function toggleWishlist(productId) {
+            const index = wishlist.indexOf(productId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+            } else {
+                wishlist.push(productId);
+            }
+            document.getElementById('wishlist-badge').innerText = wishlist.length;
+            renderProducts();
+            renderWishlistItems();
+        }
+
+        // Kosárba rakás
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const selectedSize = document.getElementById(`size-${productId}`).value;
+            const selectedColor = document.getElementById(`color-${productId}`).value;
+
+            const cartItem = {
+                cartId: `${productId}-${selectedSize}-${selectedColor}`,
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.images[0],
+                size: selectedSize,
+                color: selectedColor,
+                quantity: 1
+            };
+
+            const existing = cart.find(item => item.cartId === cartItem.cartId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push(cartItem);
+            }
+
+            updateCartUI();
+            toggleCartModal();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = `${totalCount} db`;
+
+            const container = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-10">A kosarado üres.</p>`;
+                document.getElementById('cart-total').innerText = `0 Ft`;
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `
+                    <div class="flex items-center justify-between border-b pb-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border">
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-900">${item.name}</h4>
+                                <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-mono font-bold">ID: ${item.id}</span>
+                                <p class="text-xs text-gray-500 mt-1">Méret: ${item.size} | Szín: ${item.color}</p>
+                                <p class="text-indigo-600 font-bold text-sm mt-1">${item.price.toLocaleString()} Ft x ${item.quantity}</p>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.cartId}')" class="text-red-500 hover:text-red-700 p-2"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('cart-total').innerText = `${total.toLocaleString()} Ft`;
+        }
+
+        function removeFromCart(cartId) {
+            cart = cart.filter(item => item.cartId !== cartId);
+            updateCartUI();
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+            updateCartUI();
+        }
+
+        function toggleWishlistModal() {
+            const modal = document.getElementById('wishlist-modal');
+            modal.classList.toggle('hidden');
+            renderWishlistItems();
+        }
+
+        function renderWishlistItems() {
+            const container = document.getElementById('wishlist-items');
+            if (wishlist.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 py-10">Nincsenek kedvenc termékek.</p>`;
+                return;
+            }
+
+            const wishProducts = products.filter(p => wishlist.includes(p.id));
+            container.innerHTML = wishProducts.map(p => `
+                <div class="flex items-center justify-between border-b pb-4">
+                    <div class="flex items-center space-x-3">
+                        <img src="${p.images[0]}" class="w-16 h-16 object-cover rounded-lg border">
+                        <div>
+                            <span class="text-xs bg-indigo-900 text-white px-2 py-0.5 rounded font-bold">ID: ${p.id}</span>
+                            <h4 class="font-bold text-sm text-gray-900 mt-1">${p.name}</h4>
+                            <p class="text-indigo-600 font-bold text-sm">${p.price.toLocaleString()} Ft</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleWishlist('${p.id}')" class="text-rose-500 hover:text-rose-700"><i class="fa-solid fa-heart"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) {
+                alert('A kosarad üres!');
+                return;
+            }
+            toggleCartModal();
+            document.getElementById('checkout-modal').classList.remove('hidden');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        // ==========================================
+        // STRIPE FIZETÉS + EMAILJS INTEGRÁCIÓ
+        // ==========================================
+        function handleCheckoutSubmit(event) {
+            event.preventDefault();
+
+            const btnText = document.getElementById('checkout-btn-text');
+            btnText.innerText = "Stripe fizetés ellenőrzése...";
+
+            // 1. STRIPE FIZETÉSI SZIMULÁCIÓ (Valós környezetben itt hívod a Stripe API-t / backendet)
+            setTimeout(() => {
+                const stripePaymentSuccessful = true; // Feltételezzük, hogy a Stripe elfogadta a kártyát
+
+                if (stripePaymentSuccessful) {
+                    // 2. HA A STRIPE ELFOGADTA, ELKÜLDJÜK AZ EMAILJS-SEL A RENDELÉST
+                    const customerName = document.getElementById('c-name').value;
+                    const customerEmail = document.getElementById('c-email').value;
+                    const customerAddress = `${document.getElementById('c-address').value}, ${document.getElementById('c-city').value} (${document.getElementById('c-zip').value})`;
+                    
+                    const orderSummary = cart.map(i => `[ID: ${i.id}] ${i.name} (${i.size}, ${i.color}) - ${i.quantity} db - ${(i.price * i.quantity).toLocaleString()} Ft`).join('\n');
+                    const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toLocaleString() + " Ft";
+
+                    const templateParams = {
+                        to_name: customerName,
+                        to_email: customerEmail,
+                        shipping_address: customerAddress,
+                        order_details: orderSummary,
+                        total_price: totalAmount
+                    };
+
+                    // EmailJS küldés indítása
+                    // Cseréld ki a 'szolgaltatas_id' és 'sablon_id' értékeket a saját EmailJS fiókod adataira!
+                    emailjs.send('szolgaltatas_id', 'sablon_id', templateParams)
+                        .then(function(response) {
+                            alert('Sikeres Stripe fizetés és rendelés! Az értesítő emailt elküldtük.');
+                            cart = [];
+                            updateCartUI();
+                            closeCheckout();
+                            document.getElementById('checkout-form').reset();
+                            btnText.innerText = "Fizetés és Rendelés Elküldése (Stripe + EmailJS)";
+                        }, function(error) {
+                            alert('A Stripe fizetés sikeres volt, de az EmailJS hiba miatt az email küldés meghiúsult: ' + JSON.stringify(error));
+                            btnText.innerText = "Fizetés és Rendelés Elküldése (Stripe + EmailJS)";
+                        });
+
+                } else {
+                    alert('A Stripe elutasította a fizetést. Kérjük ellenőrizd a kártyaadatokat.');
+                    btnText.innerText = "Fizetés és Rendelés Elküldése (Stripe + EmailJS)";
+                }
+            }, 1500);
+        }
+
+        // Oldal betöltésekor inicializáljuk a termékeket
+        window.onload = function() {
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
